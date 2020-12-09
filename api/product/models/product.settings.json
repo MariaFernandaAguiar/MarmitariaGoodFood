@@ -1,0 +1,79 @@
+{
+  "kind": "collectionType",
+  "collectionName": "products",
+  "info": {
+    "name": "product"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "name"
+    },
+    "description": {
+      "type": "text",
+      "required": true,
+      "unique": false,
+      "maxLength": 160
+    },
+    "price": {
+      "type": "decimal",
+      "required": true,
+      "min": 0,
+      "default": 0
+    },
+    "size": {
+      "type": "string",
+      "unique": false,
+      "required": true
+    },
+    "unit": {
+      "type": "enumeration",
+      "enum": [
+        "G",
+        "M",
+        "P"
+      ]
+    },
+    "img": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": false
+    },
+    "cover": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": false
+    },
+    "sale": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "category": {
+      "model": "category",
+      "via": "products"
+    },
+    "foods": {
+      "collection": "food",
+      "via": "products",
+      "dominant": true
+    }
+  }
+}

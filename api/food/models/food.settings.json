@@ -1,0 +1,26 @@
+{
+  "kind": "collectionType",
+  "collectionName": "foods",
+  "info": {
+    "name": "food"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "type": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "type"
+    },
+    "products": {
+      "via": "foods",
+      "collection": "product"
+    }
+  }
+}
